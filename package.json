@@ -1,0 +1,37 @@
+{
+  "name": "@emartech/cls-adapter",
+  "version": "0.0.0",
+  "description": "Wrapper around cls-hooked for easier access",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./src/ --recursive",
+    "test:watch": "mocha ./src/ --recursive --watch",
+    "semantic-release": "CI=true semantic-release pre && npm publish --access public && semantic-release post",
+    "koa-example": "DEBUG=* node examples/koa.js",
+    "express-example": "DEBUG=* node examples/express.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emartech/cls-adapter.git"
+  },
+  "dependencies": {
+    "cls-hooked": "4.2.2",
+    "uuid": "3.1.0"
+  },
+  "devDependencies": {
+    "chai": "4.1.2",
+    "express": "4.16.2",
+    "koa": "2.3.0",
+    "mocha": "3.5.0",
+    "semantic-release": "7.0.2",
+    "sinon": "3.2.1",
+    "sinon-chai": "2.13.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emartech/cls-adapter/issues"
+  },
+  "homepage": "https://github.com/emartech/cls-adapter#readme"
+}
