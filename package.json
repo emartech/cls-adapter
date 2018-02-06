@@ -28,7 +28,10 @@
     "sinon-chai": "2.13.0"
   },
   "keywords": [],
-  "author": "",
+  "author": "Emartech",
+  "engines": {
+    "node": ">= 8"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/emartech/cls-adapter/issues"
