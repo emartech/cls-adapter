@@ -27,6 +27,11 @@
     "sinon": "3.2.1",
     "sinon-chai": "2.13.0"
   },
+  "release": {
+    "verifyConditions": {
+      "path": "./node_modules/semantic-release/src/lib/plugin-noop.js"
+    }
+  },
   "keywords": [],
   "author": "Emartech",
   "engines": {
