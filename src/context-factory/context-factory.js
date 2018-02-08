@@ -51,6 +51,18 @@ class ContextFactory {
     return {};
   }
 
+  static getRequestId() {
+    return this.getContextStorage().request_id;
+  }
+
+  static addContextStorageToInput() {
+    return (input) => Object.assign({}, input, this.getContextStorage());
+  }
+
+  static addRequestIdToInput() {
+    return (input) => Object.assign({}, input, { request_id: this.getRequestId() });
+  }
+
   static destroyNamespace() {
     if (this._namespace) {
       continuationLocalStorage.destroyNamespace('session');

@@ -65,4 +65,47 @@ describe('ContextFactory', function() {
       expect(storage).to.eql({ request_id: 'uid' });
     });
   });
+
+  it('should return request id from context', function() {
+    this.sandbox.restore();
+
+    const namespace = ContextFactory.createNamespace();
+
+    namespace.run(function(){
+      ContextFactory.setOnContext('request_id', 'uid');
+
+      const requestId = ContextFactory.getRequestId();
+
+      expect(requestId).to.eql('uid');
+    });
+  });
+
+  it('should add context storage to input', function() {
+    this.sandbox.restore();
+
+    const namespace = ContextFactory.createNamespace();
+
+    namespace.run(function(){
+      ContextFactory.setOnContext('request_id', 'uid');
+      ContextFactory.setOnContext('customer_id', 15);
+
+      const add = ContextFactory.addContextStorageToInput();
+
+      expect(add({ debug: true })).to.eql({ debug: true, request_id: 'uid', customer_id: 15 });
+    });
+  });
+
+  it('should add request id to input', function() {
+    this.sandbox.restore();
+
+    const namespace = ContextFactory.createNamespace();
+
+    namespace.run(function(){
+      ContextFactory.setOnContext('request_id', 'uid');
+
+      const add = ContextFactory.addRequestIdToInput();
+
+      expect(add({ debug: true })).to.eql({ debug: true, request_id: 'uid' });
+    });
+  });
 });
