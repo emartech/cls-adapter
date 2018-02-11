@@ -1,14 +1,17 @@
 {
   "name": "@emartech/cls-adapter",
   "version": "0.0.0",
-  "description": "Wrapper around cls-hooked for easier access",
+  "description": "Continuation Local Storage made easy",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./src/ --recursive",
     "test:watch": "mocha ./src/ --recursive --watch",
-    "semantic-release": "CI=true semantic-release pre && npm publish --access public && semantic-release post",
+    "semantic-release": "CI=true semantic-release",
     "koa-example": "DEBUG=* node examples/koa.js",
     "express-example": "DEBUG=* node examples/express.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -16,16 +19,16 @@
   },
   "dependencies": {
     "cls-hooked": "4.2.2",
-    "uuid": "3.1.0"
+    "uuid": "3.2.1"
   },
   "devDependencies": {
     "chai": "4.1.2",
     "express": "4.16.2",
-    "koa": "2.3.0",
-    "mocha": "3.5.0",
-    "semantic-release": "7.0.2",
-    "sinon": "3.2.1",
-    "sinon-chai": "2.13.0"
+    "koa": "2.5.0",
+    "mocha": "5.0.0",
+    "semantic-release": "12.4.1",
+    "sinon": "4.3.0",
+    "sinon-chai": "2.14.0"
   },
   "release": {
     "verifyConditions": {
