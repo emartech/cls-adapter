@@ -30,7 +30,12 @@
     "sinon": "4.3.0",
     "sinon-chai": "2.14.0"
   },
-  "keywords": [],
+  "keywords": [
+    "threading",
+    "shared",
+    "context",
+    "middleware"
+  ],
   "author": "Emartech",
   "engines": {
     "node": ">= 8"

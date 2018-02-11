@@ -1,4 +1,4 @@
-# cls-adapter
+# @emartech/cls-adapter
 
 A wrapper around the Continuation Local Storage library [cls-hooked](https://github.com/Jeff-Lewis/cls-hooked).
 Makes storing and retrieving of context dependent information easier.
@@ -7,10 +7,15 @@ It acts as a thread aware storage.
 When a value is set on the storage with a given key,
 that value will be available inside functions calls from the parent function.
 
-### Basic usage
+### Installation
+
+```bash
+npm install @emartech/cls-adapter
+```
+
+### Usage
 
 ```javascript
-// Add middleware to Koa app
 const Koa = require('koa');
 const ClsAdapter = require('@emartech/cls-adapter');
 
@@ -40,9 +45,9 @@ app.listen(3000);
 
 ```
 
-### Middlewares
+### API
 
-##### ClsAdapter.getKoaMiddleware()
+#### ClsAdapter.getKoaMiddleware()
 
 Returns a middleware function compatible with Koa that stores (or generates of missing) 
 the request identifier from the header (X-Request-Id) and sets it on the storage as `request_id`.
@@ -57,7 +62,7 @@ app.use(async () => {
 });
 ```
 
-##### ClsAdapter.getExpressMiddleware()
+#### ClsAdapter.getExpressMiddleware()
 
 Returns a middleware function compatible with Express that stores (or generates of missing) 
 the request identifier from the header (X-Request-Id) and sets it on the storage as `request_id`.
@@ -72,11 +77,11 @@ app.use(() => {
 });
 ```
 
-##### ClsAdapter.getContextStorage()
+#### ClsAdapter.getContextStorage()
 
 Returns the all the values set on the storage.
 
-##### ClsAdapter.setOnContext(key, value)
+#### ClsAdapter.setOnContext(key, value)
 
 Sets a key with a given value on the storage.
 
@@ -87,7 +92,7 @@ ClsAdapter.getContextStorage();
 // { customer_id: 1 }
 ```
 
-##### ClsAdapter.getRequestId()
+#### ClsAdapter.getRequestId()
 
 Returns the the request identifier set on the storage. The identifiers key is `request_id`.
 
@@ -97,7 +102,7 @@ ClsAdapter.getRequestId();
 // 'd5caaa0e-b04e-4d94-bc88-3ed3b62dc94a'
 ```
 
-##### ClsAdapter.addContextStorageToInput()
+#### ClsAdapter.addContextStorageToInput()
 
 Returns a function that extends the given object with the current storage.
 
@@ -108,8 +113,7 @@ ClsAdapter.addContextStorageToInput()({ debug: true });
 // { debug: true, customer_id: 1 }
 ```
 
-
-##### ClsAdapter.addRequestIdToInput()
+#### ClsAdapter.addRequestIdToInput()
 
 Returns a function that extends the given object with the request identifier set on the current storage.
 
