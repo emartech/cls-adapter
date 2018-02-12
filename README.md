@@ -49,7 +49,7 @@ app.listen(3000);
 
 #### ClsAdapter.getKoaMiddleware()
 
-Returns a middleware function compatible with Koa that stores (or generates of missing) 
+Returns a middleware function compatible with Koa that stores (or generates if missing) 
 the request identifier from the header (X-Request-Id) and sets it on the storage as `request_id`.
 
 ```javascript
@@ -64,7 +64,7 @@ app.use(async () => {
 
 #### ClsAdapter.getExpressMiddleware()
 
-Returns a middleware function compatible with Express that stores (or generates of missing) 
+Returns a middleware function compatible with Express that stores (or generates if missing) 
 the request identifier from the header (X-Request-Id) and sets it on the storage as `request_id`.
 
 ```javascript
