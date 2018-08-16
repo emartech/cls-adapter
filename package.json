@@ -40,7 +40,7 @@
   "engines": {
     "node": ">= 8"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/emartech/cls-adapter/issues"
   },
