@@ -13,6 +13,8 @@ class ContextFactory {
           'request_id',
           ctx.request.headers['x-request-id'] || uuid.v4()
         );
+        namespace.bindEmitter(ctx.req);
+        namespace.bindEmitter(ctx.res);
 
         next().then(resolve).catch(reject);
       }));
