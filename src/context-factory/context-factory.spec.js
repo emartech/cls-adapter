@@ -25,6 +25,7 @@ describe('ContextFactory', function() {
       set: this.sandbox.stub(),
       bind: this.sandbox.stub(),
       run: this.sandbox.stub(),
+      runAndReturn: this.sandbox.stub(),
       bindEmitter: this.sandbox.stub()
     };
     namespaceStub.bind.returnsArg(0);
@@ -107,5 +108,15 @@ describe('ContextFactory', function() {
 
       expect(add({ debug: true })).to.eql({ debug: true, request_id: 'uid' });
     });
+  });
+
+  it('should run given callback in context', function() {
+    const callback = this.sandbox.stub().returns('works');
+    namespaceStub.runAndReturn.callsArg(0);
+
+    const result = ContextFactory.run(callback);
+
+    expect(result).to.eql('works');
+    expect(namespaceStub.runAndReturn).to.have.been.calledWith(callback);
   });
 });

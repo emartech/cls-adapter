@@ -39,6 +39,12 @@ class ContextFactory {
     };
   }
 
+  static run(callback) {
+    const namespace = this.createNamespace();
+
+    return namespace.runAndReturn(callback);
+  }
+
   static setOnContext(key, value) {
     const namespace = this.createNamespace();
     namespace.set(key, value);
