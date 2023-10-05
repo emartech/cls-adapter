@@ -23,13 +23,13 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
-    "chai": "4.2.0",
-    "express": "4.16.4",
-    "koa": "2.6.1",
-    "mocha": "5.2.0",
-    "semantic-release": "15.10.6",
-    "sinon": "7.1.0",
-    "sinon-chai": "3.2.0"
+    "chai": "4.3.10",
+    "express": "4.18.2",
+    "koa": "2.14.2",
+    "mocha": "10.2.0",
+    "semantic-release": "22.0.5",
+    "sinon": "16.1.0",
+    "sinon-chai": "3.7.0"
   },
   "keywords": [
     "threading",
