@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "cls-hooked": "4.2.2",
+    "lodash": "4.17.21",
     "uuid": "3.3.2"
   },
   "devDependencies": {

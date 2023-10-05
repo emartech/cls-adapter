@@ -87,9 +87,10 @@ Sets a key with a given value on the storage.
 
 ```javascript
 ClsAdapter.setOnContext('customer_id', 1);
+ClsAdapter.setOnContext('application.customer.id', 11);
 
 ClsAdapter.getContextStorage();
-// { customer_id: 1 }
+// { customer_id: 1, application: { customer: { id: 11 } } }
 ```
 
 #### ClsAdapter.getRequestId()

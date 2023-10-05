@@ -2,6 +2,7 @@
 
 const continuationLocalStorage = require('cls-hooked');
 const uuid = require('uuid');
+const { set } = require("lodash");
 
 class ContextFactory {
   static getKoaMiddleware() {
@@ -53,10 +54,16 @@ class ContextFactory {
   static getContextStorage() {
     if (this._namespace && this._namespace.active) {
       const { id, _ns_name, ...contextData } = this._namespace.active;
-      return contextData;
+      return this.convertDotNotationToObjects(contextData);
     }
 
     return {};
+  }
+
+  static convertDotNotationToObjects(data) {
+    const modifiedData = {};
+    Object.keys(data).forEach(key => set(modifiedData, key, data[key]));
+    return modifiedData;
   }
 
   static getRequestId() {

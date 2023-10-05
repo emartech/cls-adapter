@@ -96,6 +96,40 @@ describe('ContextFactory', function() {
     });
   });
 
+it('should convert to objects when adding context storage to input', function() {
+    this.sandbox.restore();
+
+    const namespace = ContextFactory.createNamespace();
+
+    namespace.run(function(){
+      ContextFactory.setOnContext('application.customer.id', 15);
+
+      const add = ContextFactory.addContextStorageToInput();
+
+      expect(add({ debug: true })).to.eql({
+        debug: true, application: { customer: { id: 15 } }
+      });
+    });
+  });
+
+it('should merge logged object when called multiple times', function() {
+    this.sandbox.restore();
+
+    const namespace = ContextFactory.createNamespace();
+
+    namespace.run(function(){
+      ContextFactory.setOnContext('application.customer.id', 15);
+      ContextFactory.setOnContext('application.customer.name', 'lajos');
+      ContextFactory.setOnContext('application.monkey', 'banana');
+
+      const add = ContextFactory.addContextStorageToInput();
+
+      expect(add({ debug: true })).to.eql({
+        debug: true, application: { customer: { id: 15, name: 'lajos' }, monkey: 'banana' }
+      });
+    });
+  });
+
   it('should add request id to input', function() {
     this.sandbox.restore();
 
