@@ -1,0 +1,52 @@
+name: CLS Adapter Build
+
+on: [push, pull_request]
+
+env:
+  NPM_TOKEN: ${{ secrets.NPM_DEPLOYER_TOKEN }}
+
+jobs:
+  test:
+    name: Tests 🚦
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Use correct Node version
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: ${{ steps.cache_node_modules.outputs.cache-hit != 'true' }}
+        continue-on-error: true
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          npm ci
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    name: Deploy 🚢
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Use correct Node version
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Publish package
+        run: CI=true npm run semantic-release
