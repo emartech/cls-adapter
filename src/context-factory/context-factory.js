@@ -1,7 +1,7 @@
 'use strict';
 
 const continuationLocalStorage = require('cls-hooked');
-const uuid = require('uuid');
+const { randomUUID } = require('crypto');
 const { set } = require("lodash");
 
 class ContextFactory {
@@ -12,7 +12,7 @@ class ContextFactory {
       await new Promise(namespace.bind(function(resolve, reject) {
         namespace.set(
           'request_id',
-          ctx.request.headers['x-request-id'] || uuid.v4()
+          ctx.request.headers['x-request-id'] || randomUUID()
         );
         namespace.bindEmitter(ctx.req);
         namespace.bindEmitter(ctx.res);
@@ -32,7 +32,7 @@ class ContextFactory {
       namespace.run(() => {
         namespace.set(
           'request_id',
-          req.headers['x-request-id'] || uuid.v4()
+          req.headers['x-request-id'] || randomUUID()
         );
 
         next();
